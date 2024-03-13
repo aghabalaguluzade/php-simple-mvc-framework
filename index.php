@@ -2,23 +2,15 @@
 
 require 'functions.php';
 // require 'router.php';
+require 'Database.php';
 
-// $dns = "mysql:host=localhost;port=3306;dbname=php-mvc-framework;charset=utf8mb4";
-// $pdo = new PDO($dns,'root',"");
+$config = require('config.php');
 
-$dns = "mysql:host=localhost;port=3306;dbname=php-mvc-framework;charset=utf8mb4";
-$username = "root";
-$password = "";
-try {
-    $pdo = new PDO($dns, $username, $password);
-} catch (PDOException $e) {
-    echo "Bağlantı hatası: " . $e->getMessage();
-}
+$db = new Database($config['database']);
 
+$id = $_GET['id'];
+$query = "SELECT * FROM posts WHERE id = :id";
 
+$posts = $db->query($query,['id' => $id])->fetch();
 
-
-// $statement = $pdo->prepare("SELECT * FROM posts");
-// $statement->execute();
-// $posts = $statement->fetchAll();
-// dd($posts);
+dd($posts);
