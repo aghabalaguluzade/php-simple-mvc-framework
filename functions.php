@@ -2,10 +2,10 @@
 
 function dd($value):void
 {
-echo "<pre>";
-var_dump($value);
-echo "</pre>";
-die();
+	echo "<pre>";
+	var_dump($value);
+	echo "</pre>";
+	die();
 };
 
 function urlIs(string $value): string
