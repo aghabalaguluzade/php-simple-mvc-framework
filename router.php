@@ -1,5 +1,7 @@
 <?php
 
+$routes = require('routes.php');
+
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 function abort(int $code = 404): void
@@ -8,14 +10,6 @@ function abort(int $code = 404): void
     require "views/{$code}.php";
     die();
 }
-
-$routes = [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/notes' => 'controllers/notes.php',
-	'/note' => 'controllers/note.php',
-    '/contact' => 'controllers/contact.php'
-];
 
 function routeToController(string $uri, array $routes): void
 {
