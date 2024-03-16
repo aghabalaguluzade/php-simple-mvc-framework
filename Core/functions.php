@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function dd($value):void
 {
 	echo "<pre>";
@@ -12,6 +14,15 @@ function urlIs(string $value): string
 {
     return $_SERVER['REQUEST_URI'] === $value;
 }
+
+function abort(int $code = 404)
+	{
+		http_response_code($code);
+		
+		require base_path("views/{$code}.php");
+		
+		die();
+	}
 
 function authorize(mixed $condition,int $status = Response::FORBIDDEN): void
 {

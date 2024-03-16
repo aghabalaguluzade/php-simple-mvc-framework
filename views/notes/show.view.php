@@ -11,6 +11,13 @@
 		<p class="mb-6 mt-6">
 			<a href="/notes" class="text-blue-500 underline">Go back</a>
 		</p>
+		
+		<form method="POST" class="mt-6">
+			<input type="hidden" name="_method" value="DELETE" />
+			<input type="hidden" name="id" value="<?php $note['id'] ?>" />
+			<button class="text-sm text-red-500">Delete</button>
+		</form>
+		
 	</div>
 </main>
 
