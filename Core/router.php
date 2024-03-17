@@ -44,9 +44,7 @@ class Router
 				return require base_path($route['controller']);
 			}
 		}
-		
-		$this->abort();
-		
+			$this->abort();
 	}
 	
 	protected function abort(int $code = 404)
