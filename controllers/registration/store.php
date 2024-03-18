@@ -33,13 +33,17 @@ $user = $db->query('SELECT * FROM users WHERE email = :email', [
 
 if($user) {
 
+	$_SESSION['user'] = [
+		'email' => $user['email']
+	];
+
 	header('location: /');
 	exit();
 	
 }else {
 	$db->query('INSERT INTO users(email,password) VALUES(:email,:password)',[
 		'email' => $email,
-		'password' => $password
+		'password' => password_hash($password,PASSWORD_BCRYPT)
 	]);
 	
 	$_SESSION['user'] = [
