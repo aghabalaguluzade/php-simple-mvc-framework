@@ -10,11 +10,11 @@ $password = $_POST['password'];
 $errors = [];
 
 if(! Validator::email($email)) {
-	$errors['email'] = 'Please provide a valid email address';
+	$errors['email'] = 'Please provide a valid email address.';
 }
 
 if(! Validator::string($password,8,255)) {
-	$errors['password'] = 'Please provide a password of at least eigth characters';
+	$errors['password'] = 'Please provide a password of at least eigth characters.';
 }
 
 if(! empty($errors)) {
@@ -32,11 +32,6 @@ $user = $db->query('SELECT * FROM users WHERE email = :email', [
 
 
 if($user) {
-
-	$_SESSION['user'] = [
-		'email' => $user['email']
-	];
-
 	header('location: /');
 	exit();
 	
@@ -46,9 +41,7 @@ if($user) {
 		'password' => password_hash($password,PASSWORD_BCRYPT)
 	]);
 	
-	$_SESSION['user'] = [
-		'email' => $email
-	];
+	login($user);
 	
 	header('location: /');
 	exit();
