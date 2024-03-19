@@ -2,6 +2,9 @@
 
 namespace Core;
 
+use Core\App;
+use Core\Session;
+
 class Authenticator
 {
 	public function attempt(string $email, string $password): bool
@@ -10,6 +13,8 @@ class Authenticator
 			->query('SELECT * FROM users WHERE email = :email',[
 				'email' => $email
 		])->find();
+		
+		dd($suer);
 		
 		if($user) {
 			if(password_verify($password, $user['password'])) {
@@ -36,12 +41,7 @@ class Authenticator
 
 	public function logout() 
 	{
-		$_SESSION = [];
-
-		session_destroy();
-
-		$params = session_get_cookie_params();
-		setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+		Session::destroy();
 	}
 
 }
