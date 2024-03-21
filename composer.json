@@ -1,0 +1,16 @@
+{
+    "name": "aghabalaguluzade/php-simple-mvc-framework",
+    "authors": [
+        {
+            "name": "aghabalaguluzade",
+            "email": "agabala.oyunda@gmail.com"
+        }
+    ],
+    "require": {},
+	"autoload" : {
+		"psr-4" : {
+			"Core\\" : "Core/",
+			"Http\\" : "Http/"
+		}
+	}
+}
